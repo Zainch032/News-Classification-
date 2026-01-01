@@ -79,9 +79,10 @@ Open: `http://127.0.0.1:5000`
 ## 👤 Author
 
 **Muhammad Zain**
-📧 [zc19398@gmail.com](mailto:zc19398@gmail.com)
-🐙 [https://github.com/Zainch032](https://github.com/Zainch032)
-🌐 [https://zainch12.pythonanywhere.com](https://zainch12.pythonanywhere.com)
+
+* 📧 [zc19398@gmail.com](mailto:zc19398@gmail.com)
+* 🐙 [https://github.com/Zainch032](https://github.com/Zainch032)
+* 🌐 [https://zainch12.pythonanywhere.com](https://zainch12.pythonanywhere.com)
 
 ---
 
