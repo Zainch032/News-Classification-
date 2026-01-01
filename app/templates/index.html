@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI News Classifier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <header class="header-with-action">
+            <div class="header-main">
+                <div class="logo">AI Classifier</div>
+                <h1>News Category Predictor</h1>
+            </div>
+            <a class="btn-link" href="{{ url_for('dashboard') }}">Go to Dashboard →</a>
+        </header>
+
+        <main>
+            <div class="card input-section">
+                <form method="POST">
+                    <div class="form-group">
+                        <textarea id="input_text" name="input_text" placeholder="Paste the news headline or article content here..." required>{{ request.form.get('input_text', '') }}</textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <span class="icon">✨</span> Analyze Text
+                    </button>
+                </form>
+            </div>
+
+            {% if result %}
+            <div class="card output-section">
+                <div class="prediction-header">
+                    <span class="label">Top Prediction</span>
+                    <h2 class="category-badge {{ result|lower }}">{{ result }}</h2>
+                </div>
+
+                {% if confidence %}
+                <div class="confidence-wrapper">
+                    <h3>Confidence Analysis</h3>
+                    <div class="stats-grid">
+                        {% for label, score in confidence.items() %}
+                        <div class="stat-item">
+                            <div class="stat-info">
+                                <span class="stat-label">{{ label }}</span>
+                                <span class="stat-percent">{{ "%.1f"|format(score) }}%</span>
+                            </div>
+                            <div class="progress-bg">
+                                <div class="progress-fill {{ label|lower }}" style="width: {{ score }}%;"></div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+
+        </main>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-wrapper">
+        <header>
+            <div class="logo">AI Classifier</div>
+            <h1>Dataset Dashboard</h1>
+        </header>
+
+        <main>
+            <div class="card viz-section">
+                <div class="viz-header">
+                    <h3>Dataset Insights</h3>
+                    <p>Visualizations generated from the training data.</p>
+                </div>
+
+                {% if charts %}
+                <div class="viz-grid">
+                    {% if charts.get('class_distribution') %}
+                    <div class="viz-item">
+                        <h4>Class Distribution</h4>
+                        <img src="{{ url_for('static', filename=charts.get('class_distribution')) }}" alt="Class distribution pie chart">
+                    </div>
+                    {% endif %}
+
+                    {% if charts.get('business_top_words') %}
+                    <div class="viz-item">
+                        <h4>Top Words: Business</h4>
+                        <img src="{{ url_for('static', filename=charts.get('business_top_words')) }}" alt="Business top words">
+                    </div>
+                    {% endif %}
+
+                    {% if charts.get('technology_top_words') %}
+                    <div class="viz-item">
+                        <h4>Top Words: Technology</h4>
+                        <img src="{{ url_for('static', filename=charts.get('technology_top_words')) }}" alt="Technology top words">
+                    </div>
+                    {% endif %}
+                </div>
+                {% else %}
+                <p>No charts available. Please ensure the dataset files are present.</p>
+                {% endif %}
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+
